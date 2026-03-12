@@ -42,10 +42,40 @@
 
         // Data Level (Bisa kamu tambah terus sampai 10)
         const levels = {
-            1: [{id: 'a1', x: 0, y: 0, dir: 'UP'}],
-            2: [{id: 'a1', x: -40, y: 0, dir: 'LEFT'}, {id: 'a2', x: 40, y: 0, dir: 'UP'}],
-            3: [{id: 'a1', x: 0, y: 0, dir: 'RIGHT'}, {id: 'a2', x: 80, y: 0, dir: 'UP'}, {id: 'a3', x: 80, y: -80, dir: 'RIGHT'}],
-            // ... Level 4-10 bisa kamu kembangkan koordinatnya di sini
+            1: [{id:'a1', x:0, y:0, dir:'UP'}],
+            2: [{id:'a1', x:-60, y:0, dir:'LEFT'}, {id:'a2', x:60, y:0, dir:'UP'}],
+            3: [{id:'a1', x:-80, y:0, dir:'RIGHT'}, {id:'a2', x:0, y:0, dir:'UP'}, {id:'a3', x:80, y:0, dir:'LEFT'}],
+            4: [
+                {id:'a1', x:-60, y:-60, dir:'UP'}, {id:'a2', x:60, y:-60, dir:'RIGHT'},
+                {id:'a3', x:-60, y:60, dir:'LEFT'}, {id:'a4', x:60, y:60, dir:'DOWN'}
+            ],
+            5: [
+                {id:'a1', x:-100, y:0, dir:'LEFT'}, {id:'a2', x:-35, y:0, dir:'UP'},
+                {id:'a3', x:35, y:0, dir:'DOWN'}, {id:'a4', x:100, y:0, dir:'RIGHT'}
+            ],
+            6: [
+                {id:'a1', x:-70, y:-70, dir:'LEFT'}, {id:'a2', x:70, y:-70, dir:'UP'},
+                {id:'a3', x:0, y:0, dir:'RIGHT'},
+                {id:'a4', x:-70, y:70, dir:'DOWN'}, {id:'a5', x:70, y:70, dir:'RIGHT'}
+            ],
+            7: [
+                {id:'a1', x:-90, y:-90, dir:'UP'}, {id:'a2', x:0, y:-90, dir:'UP'}, {id:'a3', x:90, y:-90, dir:'UP'},
+                {id:'a4', x:-90, y:90, dir:'DOWN'}, {id:'a5', x:0, y:90, dir:'DOWN'}, {id:'a6', x:90, y:90, dir:'DOWN'}
+            ],
+            8: [
+                {id:'a1', x:-100, y:-50, dir:'LEFT'}, {id:'a2', x:0, y:-50, dir:'UP'}, {id:'a3', x:100, y:-50, dir:'RIGHT'},
+                {id:'a4', x:-100, y:50, dir:'LEFT'}, {id:'a5', x:0, y:50, dir:'DOWN'}, {id:'a6', x:100, y:50, dir:'RIGHT'}
+            ],
+            9: [
+                {id:'a1', x:-100, y:-100, dir:'UP'}, {id:'a2', x:100, y:-100, dir:'UP'},
+                {id:'a3', x:-100, y:0, dir:'LEFT'}, {id:'a4', x:0, y:0, dir:'RIGHT'}, {id:'a5', x:100, y:0, dir:'RIGHT'},
+                {id:'a6', x:-100, y:100, dir:'DOWN'}, {id:'a7', x:100, y:100, dir:'DOWN'}
+            ],
+            10: [
+                {id:'a1', x:-120, y:-120, dir:'LEFT'}, {id:'a2', x:0, y:-120, dir:'UP'}, {id:'a3', x:120, y:-120, dir:'RIGHT'},
+                {id:'a4', x:-120, y:0, dir:'LEFT'}, {id:'a5', x:0, y:0, dir:'DOWN'}, {id:'a6', x:120, y:0, dir:'RIGHT'},
+                {id:'a7', x:-120, y:120, dir:'LEFT'}, {id:'a8', x:0, y:120, dir:'DOWN'}, {id:'a9', x:120, y:120, dir:'RIGHT'}
+            ]
         };
 
         // Fungsi Suara Klik (Beep)
