@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arrow Out Web</title>
+    <style>
+        #game-container { width: 300px; height: 300px; border: 2px solid black; position: relative; }
+        .arrow { width: 50px; height: 50px; position: absolute; cursor: pointer; display: flex; align-items: center; justify-content: center; background: lightblue; border-radius: 5px; transition: all 0.5s; }
+    </style>
+</head>
+<body>
+    <h2>Arrow Out Simulator (HTML/JS)</h2>
+    <div id="game-container">
+        <div id="p1" class="arrow" style="left: 50px; top: 50px;" onclick="moveArrow('p1', 'KANAN')">➡</div>
+        <div id="p2" class="arrow" style="left: 100px; top: 50px;" onclick="moveArrow('p2', 'ATAS')">⬆</div>
+    </div>
+
+    <script>
+        function moveArrow(id, arah) {
+            let el = document.getElementById(id);
+            if (arah === 'KANAN') el.style.left = '400px'; // Simulasi keluar layar
+            if (arah === 'ATAS') el.style.top = '-100px';
+        }
+    </script>
+</body>
+</html>
