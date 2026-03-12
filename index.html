@@ -1,24 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Arrow Out Web</title>
+    <title>Arrow Out Simulator</title>
     <style>
-        #game-container { width: 300px; height: 300px; border: 2px solid black; position: relative; }
-        .arrow { width: 50px; height: 50px; position: absolute; cursor: pointer; display: flex; align-items: center; justify-content: center; background: lightblue; border-radius: 5px; transition: all 0.5s; }
+        /* Membuat halaman rapi di tengah layar */
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background-color: #2c3e50; 
+            color: white; 
+            font-family: sans-serif; 
+            margin-top: 50px;
+        }
+        
+        /* Area Kotak Permainan */
+        #game-container { 
+            width: 300px; 
+            height: 300px; 
+            border: 5px solid #ecf0f1; 
+            position: relative; 
+            background-color: #34495e;
+            overflow: hidden; /* Agar panah yang keluar benar-benar hilang */
+        }
+
+        /* Desain Panah */
+        .arrow { 
+            width: 60px; 
+            height: 60px; 
+            position: absolute; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: #e67e22; 
+            border-radius: 10px; 
+            font-size: 30px;
+            transition: all 0.5s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+            box-shadow: 0 4px #d35400;
+        }
+
+        .arrow:hover { background: #d35400; }
     </style>
 </head>
 <body>
-    <h2>Arrow Out Simulator (HTML/JS)</h2>
+    <h1>ARROW OUT SIMULATOR</h1>
+    <p>Klik panah untuk mengeluarkan mereka dari kotak!</p>
+
     <div id="game-container">
-        <div id="p1" class="arrow" style="left: 50px; top: 50px;" onclick="moveArrow('p1', 'KANAN')">➡</div>
-        <div id="p2" class="arrow" style="left: 100px; top: 50px;" onclick="moveArrow('p2', 'ATAS')">⬆</div>
+        <div id="p1" class="arrow" style="left: 80px; top: 120px;" onclick="gas('p1', 'RIGHT')">➡</div>
+        
+        <div id="p2" class="arrow" style="left: 150px; top: 120px;" onclick="gas('p2', 'UP')">⬆</div>
     </div>
 
     <script>
-        function moveArrow(id, arah) {
-            let el = document.getElementById(id);
-            if (arah === 'KANAN') el.style.left = '400px'; // Simulasi keluar layar
-            if (arah === 'ATAS') el.style.top = '-100px';
+        function gas(id, arah) {
+            const el = document.getElementById(id);
+            const p2 = document.getElementById('p2');
+
+            // LOGIKA TABRAKAN
+            // Jika klik p1 (kanan), cek apakah p2 (atas) masih ada di jalur
+            if (id === 'p1' && p2.style.display !== 'none') {
+                alert("Ups! Terhalang Panah Atas!");
+                return;
+            }
+
+            // Animasi Keluar
+            if (arah === 'RIGHT') {
+                el.style.left = '400px';
+            } else if (arah === 'UP') {
+                el.style.top = '-100px';
+            }
+
+            // Sembunyikan elemen setelah animasi selesai
+            setTimeout(() => {
+                el.style.display = 'none';
+            }, 500);
         }
     </script>
 </body>
