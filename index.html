@@ -42,39 +42,103 @@
 
         // Data Level (Bisa kamu tambah terus sampai 10)
         const levels = {
-            1: [{id:'a1', x:0, y:0, dir:'UP'}],
-            2: [{id:'a1', x:-60, y:0, dir:'LEFT'}, {id:'a2', x:60, y:0, dir:'UP'}],
-            3: [{id:'a1', x:-80, y:0, dir:'RIGHT'}, {id:'a2', x:0, y:0, dir:'UP'}, {id:'a3', x:80, y:0, dir:'LEFT'}],
+            1: [
+                // Baris Atas
+                {id:'a1', x:-50, y:-40, dir:'UP'}, // Kiri Atas
+                {id:'a2', x:50, y:-30, dir:'LEFT'}, // Kanan Atas
+
+                // Baris Bawah
+                {id:'a3', x:-50, y:50, dir:'RIGHT'}, // Kiri Bawah
+                {id:'a4', x:50, y:50, dir:'UP'} // Kanan Bawah
+            ],
+            2: [
+                // Baris Atas (4 Panah)
+                {id:'a1', x:-90, y:-50, dir:'DOWN'},  // Kiri Atas
+                {id:'a2', x:-30, y:-50, dir:'LEFT'},  // Tengah Kiri Atas
+                {id:'a3', x:30, y:-50, dir:'UP'},    // Tengah Kanan Atas
+                {id:'a4', x:90, y:-50, dir:'RIGHT'}, // Kanan Atas
+
+                // Baris Bawah (4 Panah)
+                {id:'a5', x:-90, y:50, dir:'LEFT'},   // Kiri Bawah
+                {id:'a6', x:-30, y:50, dir:'DOWN'},   // Tengah Kiri Bawah
+                {id:'a7', x:30, y:50, dir:'RIGHT'},  // Tengah Kanan Bawah
+                {id:'a8', x:90, y:50, dir:'UP'}      // Kanan Bawah
+            ],
+            3: [
+                // Baris Atas
+                {id:'a1', x:-100, y:-100, dir:'RIGHT'}, // Kiri Atas
+                {id:'a2', x:0, y:-100, dir:'DOWN'},    // Tengah Atas
+                {id:'a3', x:100, y:-100, dir:'RIGHT'},  // Kanan Atas
+
+                // Baris Tengah
+                {id:'a4', x:-100, y:0, dir:'UP'},      // Kiri Tengah
+                {id:'a5', x:0, y:0, dir:'RIGHT'},      // Tengah Tengah
+                {id:'a6', x:100, y:0, dir:'DOWN'},     // Kanan Tengah
+
+                // Baris Bawah
+                {id:'a7', x:-100, y:100, dir:'LEFT'},   // Kiri Bawah
+                {id:'a8', x:0, y:100, dir:'DOWN'},     // Tengah Bawah
+                {id:'a9', x:100, y:100, dir:'LEFT'}     // Kanan Bawah
+            ],
             4: [
-                {id:'a1', x:-60, y:-60, dir:'UP'}, {id:'a2', x:60, y:-60, dir:'RIGHT'},
-                {id:'a3', x:-60, y:60, dir:'LEFT'}, {id:'a4', x:60, y:60, dir:'DOWN'}
+                // Baris 1 (Paling Atas)
+                {id:'b1a', x:-105, y:-120, dir:'LEFT'}, 
+                {id:'b1b', x:-35, y:-120, dir:'RIGHT'},
+                {id:'b1c', x:35, y:-120, dir:'UP'},
+                {id:'b1d', x:105, y:-120, dir:'RIGHT'},
+
+                // Baris 2
+                {id:'b2a', x:-105, y:-40, dir:'UP'},
+                {id:'b2b', x:-35, y:-40, dir:'UP'},
+                {id:'b2c', x:35, y:-40, dir:'RIGHT'},
+                {id:'b2d', x:105, y:-40, dir:'DOWN'},
+
+                // Baris 3
+                {id:'b3a', x:-105, y:40, dir:'RIGHT'},
+                {id:'b3b', x:-35, y:40, dir:'DOWN'},
+                {id:'b3c', x:35, y:40, dir:'DOWN'},
+                {id:'b3d', x:105, y:40, dir:'RIGHT'},
+
+                // Baris 4 (Paling Bawah)
+                {id:'b4a', x:-105, y:120, dir:'DOWN'},
+                {id:'b4b', x:-35, y:120, dir:'LEFT'},
+                {id:'b4c', x:35, y:120, dir:'LEFT'},
+                {id:'b4d', x:105, y:120, dir:'LEFT'}
             ],
             5: [
-                {id:'a1', x:-100, y:0, dir:'LEFT'}, {id:'a2', x:-35, y:0, dir:'UP'},
-                {id:'a3', x:35, y:0, dir:'DOWN'}, {id:'a4', x:100, y:0, dir:'RIGHT'}
+                {id:'b1', x:-105, y:-120, dir:'UP'}, {id:'b2', x:-35, y:-120, dir:'RIGHT'}, {id:'b3', x:35, y:-120, dir:'UP'}, {id:'b4', x:105, y:-120, dir:'LEFT'},
+                {id:'b5', x:-105, y:-40, dir:'LEFT'}, {id:'b6', x:-35, y:-40, dir:'UP'}, {id:'b7', x:35, y:-40, dir:'RIGHT'}, {id:'b8', x:105, y:-40, dir:'DOWN'},
+                {id:'b9', x:-105, y:40, dir:'RIGHT'}, {id:'b10', x:-35, y:40, dir:'LEFT'}, {id:'b11', x:35, y:40, dir:'DOWN'}, {id:'b12', x:105, y:40, dir:'UP'},
+                {id:'b13', x:-105, y:120, dir:'LEFT'}, {id:'b14', x:-35, y:120, dir:'UP'}, {id:'b15', x:35, y:120, dir:'RIGHT'}, {id:'b16', x:105, y:120, dir:'LEFT'}
             ],
             6: [
-                {id:'a1', x:-70, y:-70, dir:'LEFT'}, {id:'a2', x:70, y:-70, dir:'UP'},
-                {id:'a3', x:0, y:0, dir:'RIGHT'},
-                {id:'a4', x:-70, y:70, dir:'DOWN'}, {id:'a5', x:70, y:70, dir:'RIGHT'}
+                {id:'c1', x:-105, y:-120, dir:'RIGHT'}, {id:'c2', x:-35, y:-120, dir:'DOWN'}, {id:'c3', x:35, y:-120, dir:'DOWN'}, {id:'c4', x:105, y:-120, dir:'LEFT'},
+                {id:'c5', x:-105, y:-40, dir:'UP'}, {id:'c6', x:-35, y:-40, dir:'RIGHT'}, {id:'c7', x:35, y:-40, dir:'LEFT'}, {id:'c8', x:105, y:-40, dir:'DOWN'},
+                {id:'c9', x:-105, y:40, dir:'DOWN'}, {id:'c10', x:-35, y:40, dir:'LEFT'}, {id:'c11', x:35, y:40, dir:'RIGHT'}, {id:'c12', x:105, y:40, dir:'UP'},
+                {id:'c13', x:-105, y:120, dir:'RIGHT'}, {id:'c14', x:-35, y:120, dir:'UP'}, {id:'c15', x:35, y:120, dir:'UP'}, {id:'c16', x:105, y:120, dir:'LEFT'}
             ],
-            7: [
-                {id:'a1', x:-90, y:-90, dir:'UP'}, {id:'a2', x:0, y:-90, dir:'UP'}, {id:'a3', x:90, y:-90, dir:'UP'},
-                {id:'a4', x:-90, y:90, dir:'DOWN'}, {id:'a5', x:0, y:90, dir:'DOWN'}, {id:'a6', x:90, y:90, dir:'DOWN'}
+            7: [ // Grid 5x5 mulai di sini (Sangat Padat)
+                {id:'d1', x:-120, y:-120, dir:'UP'}, {id:'d2', x:-60, y:-120, dir:'UP'}, {id:'d3', x:0, y:-120, dir:'UP'}, {id:'d4', x:60, y:-120, dir:'UP'}, {id:'d5', x:120, y:-120, dir:'UP'},
+                {id:'d6', x:-120, y:0, dir:'LEFT'}, {id:'d7', x:0, y:0, dir:'UP'}, {id:'d8', x:120, y:0, dir:'RIGHT'},
+                {id:'d9', x:-120, y:120, dir:'DOWN'}, {id:'d10', x:0, y:120, dir:'DOWN'}, {id:'d11', x:120, y:120, dir:'DOWN'}
             ],
             8: [
-                {id:'a1', x:-100, y:-50, dir:'LEFT'}, {id:'a2', x:0, y:-50, dir:'UP'}, {id:'a3', x:100, y:-50, dir:'RIGHT'},
-                {id:'a4', x:-100, y:50, dir:'LEFT'}, {id:'a5', x:0, y:50, dir:'DOWN'}, {id:'a6', x:100, y:50, dir:'RIGHT'}
+                {id:'e1', x:-120, y:-120, dir:'LEFT'}, {id:'e2', x:120, y:-120, dir:'RIGHT'},
+                {id:'e3', x:-60, y:-60, dir:'UP'}, {id:'e4', x:60, y:-60, dir:'UP'},
+                {id:'e5', x:0, y:0, dir:'RIGHT'},
+                {id:'e6', x:-60, y:60, dir:'DOWN'}, {id:'e7', x:60, y:60, dir:'DOWN'},
+                {id:'e8', x:-120, y:120, dir:'LEFT'}, {id:'e9', x:120, y:120, dir:'RIGHT'}
             ],
-            9: [
-                {id:'a1', x:-100, y:-100, dir:'UP'}, {id:'a2', x:100, y:-100, dir:'UP'},
-                {id:'a3', x:-100, y:0, dir:'LEFT'}, {id:'a4', x:0, y:0, dir:'RIGHT'}, {id:'a5', x:100, y:0, dir:'RIGHT'},
-                {id:'a6', x:-100, y:100, dir:'DOWN'}, {id:'a7', x:100, y:100, dir:'DOWN'}
+            9: [ // Pola "Cross"
+                {id:'f1', x:0, y:-120, dir:'UP'}, {id:'f2', x:0, y:-60, dir:'UP'}, {id:'f3', x:0, y:0, dir:'UP'}, {id:'f4', x:0, y:60, dir:'UP'}, {id:'f5', x:0, y:120, dir:'UP'},
+                {id:'f6', x:-120, y:0, dir:'LEFT'}, {id:'f7', x:-60, y:0, dir:'LEFT'}, {id:'f8', x:60, y:0, dir:'RIGHT'}, {id:'f9', x:120, y:0, dir:'RIGHT'}
             ],
-            10: [
-                {id:'a1', x:-120, y:-120, dir:'LEFT'}, {id:'a2', x:0, y:-120, dir:'UP'}, {id:'a3', x:120, y:-120, dir:'RIGHT'},
-                {id:'a4', x:-120, y:0, dir:'LEFT'}, {id:'a5', x:0, y:0, dir:'DOWN'}, {id:'a6', x:120, y:0, dir:'RIGHT'},
-                {id:'a7', x:-120, y:120, dir:'LEFT'}, {id:'a8', x:0, y:120, dir:'DOWN'}, {id:'a9', x:120, y:120, dir:'RIGHT'}
+            10: [ // FINAL BOSS LEVEL (25 Panah Full Grid)
+                {id:'g1', x:-120, y:-120, dir:'UP'}, {id:'g2', x:-60, y:-120, dir:'UP'}, {id:'g3', x:0, y:-120, dir:'UP'}, {id:'g4', x:60, y:-120, dir:'UP'}, {id:'g5', x:120, y:-120, dir:'UP'},
+                {id:'g6', x:-120, y:-60, dir:'LEFT'}, {id:'g7', x:-60, y:-60, dir:'UP'}, {id:'g8', x:0, y:-60, dir:'UP'}, {id:'g9', x:60, y:-60, dir:'UP'}, {id:'g10', x:120, y:-60, dir:'RIGHT'},
+                {id:'g11', x:-120, y:0, dir:'LEFT'}, {id:'g12', x:-60, y:0, dir:'LEFT'}, {id:'g13', x:0, y:0, dir:'UP'}, {id:'g14', x:60, y:0, dir:'RIGHT'}, {id:'g15', x:120, y:0, dir:'RIGHT'},
+                {id:'g16', x:-120, y:60, dir:'LEFT'}, {id:'g17', x:-60, y:60, dir:'DOWN'}, {id:'g18', x:0, y:60, dir:'DOWN'}, {id:'g19', x:60, y:60, dir:'DOWN'}, {id:'g20', x:120, y:60, dir:'RIGHT'},
+                {id:'g21', x:-120, y:120, dir:'DOWN'}, {id:'g22', x:-60, y:120, dir:'DOWN'}, {id:'g23', x:0, y:120, dir:'DOWN'}, {id:'g24', x:60, y:120, dir:'DOWN'}, {id:'g25', x:120, y:120, dir:'DOWN'}
             ]
         };
 
