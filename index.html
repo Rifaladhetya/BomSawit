@@ -1,65 +1,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Arrow Out Simulator</title>
+    <title>Arrow Out - Pro Level</title>
     <style>
-        body { 
-            display: flex; flex-direction: column; align-items: center; 
-            background-color: #2c3e50; color: white; font-family: sans-serif; 
-            margin-top: 50px;
-        }
-        
+        body { display: flex; flex-direction: column; align-items: center; background: #2c3e50; color: white; font-family: 'Segoe UI', sans-serif; }
+        #stats { display: flex; gap: 30px; margin: 20px; font-size: 20px; background: #34495e; padding: 10px 20px; border-radius: 10px; }
         #game-container { 
-            width: 350px; height: 350px; border: 5px solid #ecf0f1; 
-            background-color: #34495e; position: relative; overflow: hidden;
-            /* Ini yang bikin semua isi di dalamnya ke tengah */
+            width: 350px; height: 350px; border: 8px solid #ecf0f1; border-radius: 20px; 
+            background: #34495e; position: relative; overflow: hidden;
             display: flex; align-items: center; justify-content: center;
         }
-
-        /* Tempat parkir panah agar tetap rapi di tengah */
-        .slot { display: flex; gap: 10px; position: relative; }
-
         .arrow { 
-            width: 70px; height: 70px; background: #e67e22; 
-            border-radius: 12px; display: flex; align-items: center; 
-            justify-content: center; font-size: 35px; cursor: pointer; 
-            transition: all 0.5s ease; box-shadow: 0 5px #d35400;
-            position: relative; /* Berubah dari absolute ke relative agar ikut aliran flex */
+            width: 60px; height: 60px; background: #e67e22; border-radius: 12px; 
+            display: flex; align-items: center; justify-content: center; font-size: 30px; 
+            cursor: pointer; position: absolute; transition: all 0.4s ease-in;
+            box-shadow: 0 5px #d35400;
         }
-
-        .arrow:active { transform: translateY(4px); box-shadow: 0 2px #d35400; }
+        #win-screen { display: none; text-align: center; }
+        button { padding: 10px 20px; font-size: 18px; cursor: pointer; background: #2ecc71; border: none; color: white; border-radius: 5px; }
     </style>
 </head>
 <body>
-    <h1>ARROW OUT SIMULATOR</h1>
-    <div id="game-container">
-        <div class="slot">
-            <div id="p1" class="arrow" onclick="gas('p1', 'RIGHT')">➡</div>
-            <div id="p2" class="arrow" onclick="gas('p2', 'UP')">⬆</div>
-        </div>
+    <h1>ARROW OUT PRO</h1>
+    
+    <div id="stats">
+        <div>Level: <span id="lvl-display">1</span></div>
+        <div>Score: <span id="score-display">0</span></div>
+    </div>
+
+    <div id="game-container" id="board"></div>
+
+    <div id="win-screen">
+        <h2 id="msg">LEVEL CLEARED!</h2>
+        <button onclick="nextLevel()">NEXT LEVEL</button>
     </div>
 
     <script>
-        function gas(id, arah) {
+        let currentLevel = 1;
+        let score = 0;
+        let arrowsInLevel = 0;
+
+        // Data Level (Bisa kamu tambah terus sampai 10)
+        const levels = {
+            1: [{id: 'a1', x: 0, y: 0, dir: 'UP'}],
+            2: [{id: 'a1', x: -40, y: 0, dir: 'LEFT'}, {id: 'a2', x: 40, y: 0, dir: 'UP'}],
+            3: [{id: 'a1', x: 0, y: 0, dir: 'RIGHT'}, {id: 'a2', x: 80, y: 0, dir: 'UP'}, {id: 'a3', x: 80, y: -80, dir: 'RIGHT'}],
+            // ... Level 4-10 bisa kamu kembangkan koordinatnya di sini
+        };
+
+        // Fungsi Suara Klik (Beep)
+        function playSound() {
+            const context = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = context.createOscillator();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(440, context.currentTime);
+            osc.connect(context.destination);
+            osc.start();
+            osc.stop(context.currentTime + 0.1);
+        }
+
+        function loadLevel(lvl) {
+            const container = document.getElementById('game-container');
+            container.innerHTML = '';
+            const data = levels[lvl] || levels[1];
+            arrowsInLevel = data.length;
+            
+            data.forEach(config => {
+                const div = document.createElement('div');
+                div.id = config.id;
+                div.className = 'arrow';
+                div.innerHTML = getIcon(config.dir);
+                div.style.transform = `translate(${config.x}px, ${config.y}px)`;
+                div.onclick = () => moveArrow(config.id, config.dir);
+                container.appendChild(div);
+            });
+        }
+
+        function getIcon(dir) {
+            return {UP:'⬆️', DOWN:'⬇️', LEFT:'⬅️', RIGHT:'➡️'}[dir];
+        }
+
+        function moveArrow(id, dir) {
+            playSound();
             const el = document.getElementById(id);
-            const p2 = document.getElementById('p2');
-
-            if (id === 'p1' && p2.style.visibility !== 'hidden') {
-                alert("Terhalang Panah Atas!");
-                return;
-            }
-
-            // Animasi menggunakan transform agar lebih halus
-            if (arah === 'RIGHT') {
-                el.style.transform = 'translateX(500px)';
-            } else if (arah === 'UP') {
-                el.style.transform = 'translateY(-500px)';
-            }
+            
+            // Animasi Keluar
+            if(dir === 'UP') el.style.transform += ' translateY(-600px)';
+            if(dir === 'RIGHT') el.style.transform += ' translateX(600px)';
+            if(dir === 'LEFT') el.style.transform += ' translateX(-600px)';
+            if(dir === 'DOWN') el.style.transform += ' translateY(600px)';
 
             setTimeout(() => {
-                el.style.visibility = 'hidden';
-            }, 500);
+                el.style.display = 'none';
+                arrowsInLevel--;
+                score += 10;
+                document.getElementById('score-display').innerText = score;
+
+                if(arrowsInLevel === 0) {
+                    document.getElementById('win-screen').style.display = 'block';
+                }
+            }, 400);
         }
+
+        function nextLevel() {
+            currentLevel++;
+            if(currentLevel > 10) {
+                alert("TAMAT! Kamu Master Arrow Out!");
+                currentLevel = 1; score = 0;
+            }
+            document.getElementById('lvl-display').innerText = currentLevel;
+            document.getElementById('win-screen').style.display = 'none';
+            loadLevel(currentLevel);
+        }
+
+        // Jalankan Level 1 saat start
+        loadLevel(1);
     </script>
 </body>
 </html>
